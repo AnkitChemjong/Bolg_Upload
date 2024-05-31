@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('./partials/head.ejs') %>
+    <title>add blogs</title>
+</head>
+<body>
+  <%-include('./partials/navbar.ejs') %>
+   <div class="container mt-4">
+    <form action="/blog" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="coverImage" class="form-label">Cover Image</label>
+            <input type="file" class="form-control" id="coverImage"
+            name="coverImage" aria-describedby="coverImage"/>
+      </div>
+        <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title"
+              name="title" aria-describedby="title"/>
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label">Body</label>
+           <textarea class="form-control" name="body" 
+           id="body" 
+           placeholder="Leave a comment here!"></textarea>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary">submit</button>
+
+      </div>
+    </form>
+   </div>
+    <%-include('./partials/script.ejs') %>
+</body>
+</html>

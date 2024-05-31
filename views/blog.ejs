@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('./partials/head.ejs') %>
+    <title>Blogs</title>
+</head>
+<body>
+
+  <%-include('./partials/navbar.ejs') %>
+  <% if(locals.blogs){%>
+    <div class="container mt-4">
+        <h1><%=blogs.title%></h1>
+        <div class="container mt-4">
+            <img src="<%-blogs.createdBy.profileImage%>" width="70px">
+            <%=blogs.createdBy.fullName%>
+        </div>
+          <div class="card" style="width: 18rem;">
+            <img src="<%=blogs.coverImageURL%>" class="card-img-top" alt="...">
+            <div class="card-body">
+             <pre><%=blogs.body%></pre>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+    <% if(locals.comment){%>
+   <h1>Comments (<%= comment.length %>)</h1>
+    <% comment.forEach((comment)=>{ %>
+    <div class="container mt-4">
+        <img src="<%=comment.createdBy.profileImage%>" width="70px"/>
+        <%=comment.createdBy.fullName%>
+        
+         <pre>
+            <%= comment.content %>
+         </pre> 
+        
+    </div>
+    <% }) %>
+    </div>
+    <% } %>
+    <%if(locals.user){%>
+        <h1 >Add Comments</h1>
+        <form action="/blog/comment/<%=blogs._id %>" method="post">
+         <div class="mb-3">
+             <input type="text" class="form-control m-3" name="content" placeholder="
+             Enter your comment">
+             <button type="submit" class="btn btn-primary m-3">Add</button>
+           </div>
+        </form>
+     <%}%>
+     <% } %>
+    <%-include('./partials/script.ejs') %>
+</body>
+</html>
